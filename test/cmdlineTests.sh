@@ -37,10 +37,6 @@ FULLARGS="--optimize --ignore-missing --combined-json abi,asm,ast,bin,bin-runtim
 echo "Checking that the bug list is up to date..."
 "$REPO_ROOT"/scripts/update_bugs_by_version.py
 
-echo "Checking that StandardToken.sol, owned.sol and mortal.sol produce bytecode..."
-output=$("$REPO_ROOT"/build/solc/solc --bin "$REPO_ROOT"/std/*.sol 2>/dev/null | grep "ffff" | wc -l)
-test "${output//[[:blank:]]/}" = "3"
-
 function printTask() { echo "$(tput bold)$(tput setaf 2)$1$(tput sgr0)"; }
 
 function printError() { echo "$(tput setaf 1)$1$(tput sgr0)"; }
